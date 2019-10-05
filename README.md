@@ -26,6 +26,45 @@
         }
         ```
     * When done, commit both files in a single commit (ofc don't forget push and stuff as always)
+4. Person B - `pod.h` and `pod.cpp` - Pressure inside the pressure vessel
+    * Open `pod.h`, locate place for TASKS 3&4 and copy-paste the following line below the one from previous task
+        ```c++
+        double get_pressure();
+        ```
+    * Open `pod.cpp`, locate place for TASKS 3&4, copy the following code and paste it below the function from previous task. Change the 0 to something else.
+        ```c++
+        double Pod::get_pressure()
+        {
+          return 0;
+        }
+        ```
+    * When done, commit both files in a single commit (ofc don't forget push and stuff as always)
+5. Person A - `main.cpp` and `Makefile` - Main executable
+    * Create a new file called `main.cpp` and copy the following code to it
+        ```c++
+        #include <iostream>
+        #include "pod.h"
+
+        int main()
+        {
+          Pod pod;
+          std::cout << "Name: " << pod.get_name() << std::endl;
+          std::cout << "Maximum speed: " << pod.get_max_speed() << std::endl;
+          std::cout << "Temperature: " << pod.get_temperature() << std::endl;
+          std::cout << "Pressure: " << pod.get_pressure() << std::endl;
+          return 0;
+        }
+        ```
+    * Open `Makefile`, locate place for TASK 5 and uncomment the code there to get something like
+        ```mk
+        main : main.o pod.o bms.o navigation.o accelerometer.o
+	        $(CC) $(OBJS) $(LFLAGS) main.o -o main
+
+        main.o : main.cpp pod.h bms.h navigation.h accelerometer.h
+	        $(CC) $(CFLAGS) main.cpp
+        ```
+    * Notice the difference in the output of `git status` for the newly created file
+    * Commit `main.cpp` and `Makefile` in separate commits
 
 
 
@@ -35,5 +74,7 @@
 | 1 | Name your pod - edit `pod.cpp`                                       |                                                              |
 | 2 |                                                                      |  Max speed - edit `pod.cpp`                                  |
 | 3 | Pressure vessel temperature - edit `pod.h` and `pod.cpp`             |                                                              |
+| 4 |                                                                      | Pressure vessel pressure - edit `pod.h` and `pod.cpp`        |
+| 5 | Create `main.cpp` and update `Makefile`                              |                                                              |
 
 
